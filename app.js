@@ -54,6 +54,7 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 app.get("/", (req, res) => {
+    console.log(req.headers)
     res.send(req.user)
 })
 
