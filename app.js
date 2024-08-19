@@ -40,15 +40,19 @@ const store = new MongoDbStore({
 })
 
 const ONE_DAY = 1000 * 60 * 60 * 24
-app.use(session({
+app.use(
+  session({
     secret: SESSION_SECRET,
     saveUninitialized: false,
     resave: false,
     cookie: {
-        maxAge: ONE_DAY
+      maxAge: ONE_DAY,
+      secure: true, // Ensure the cookie is only sent over HTTPS
+      sameSite: "None", // Allow the cookie to be sent with cross-origin requests
     },
-    store: store
-}))
+    store: store,
+  })
+);
 
 app.use(passport.initialize());
 app.use(passport.session());
