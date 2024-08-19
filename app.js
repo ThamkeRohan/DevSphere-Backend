@@ -47,6 +47,8 @@ app.use(
     resave: false,
     cookie: {
       maxAge: ONE_DAY,
+      secure: true, // Ensure the cookie is only sent over HTTPS
+      sameSite: "none", // Allow the cookie to be sent with cross-origin requests
     },
     store: store,
   })
